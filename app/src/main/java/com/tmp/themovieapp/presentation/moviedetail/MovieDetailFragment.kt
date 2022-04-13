@@ -1,4 +1,4 @@
-package com.tmp.themovieapp.movielist
+package com.tmp.themovieapp.presentation.moviedetail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,25 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.tmp.themovieapp.R
+import com.tmp.themovieapp.base.BaseFragment
 
-class MovieListFragment : Fragment() {
+class MovieDetailFragment : BaseFragment(R.layout.movie_detail_fragment) {
 
     companion object {
-        fun newInstance() = MovieListFragment()
+        fun newInstance() = MovieDetailFragment()
     }
 
-    private lateinit var viewModel: MovieListViewModel
+    private lateinit var viewModel: MovieDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.movie_list_fragment, container, false)
+        return inflater.inflate(R.layout.movie_detail_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MovieListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MovieDetailViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
