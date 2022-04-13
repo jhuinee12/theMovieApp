@@ -8,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
+import com.tmp.themovieapp.databinding.MovieDetailFragmentBinding
 
-class MovieDetailFragment : BaseFragment(R.layout.movie_detail_fragment) {
+class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>(R.layout.movie_detail_fragment) {
 
     companion object {
         fun newInstance() = MovieDetailFragment()
@@ -17,17 +18,16 @@ class MovieDetailFragment : BaseFragment(R.layout.movie_detail_fragment) {
 
     private lateinit var viewModel: MovieDetailViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.movie_detail_fragment, container, false)
+    override fun initView() {
+        super.initView()
+        binding.apply {  }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MovieDetailViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun initViewModel() {
+        super.initViewModel()
     }
 
+    override fun initListener() {
+        super.initListener()
+    }
 }

@@ -1,15 +1,10 @@
 package com.tmp.themovieapp.presentation.actordetail
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
+import com.tmp.themovieapp.databinding.ActorDetailFragmentBinding
 
-class ActorDetailFragment : BaseFragment(R.layout.actor_detail_fragment) {
+class ActorDetailFragment : BaseFragment<ActorDetailFragmentBinding>(R.layout.actor_detail_fragment) {
 
     companion object {
         fun newInstance() = ActorDetailFragment()
@@ -17,17 +12,16 @@ class ActorDetailFragment : BaseFragment(R.layout.actor_detail_fragment) {
 
     private lateinit var viewModel: ActorDetailViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.actor_detail_fragment, container, false)
+    override fun initView() {
+        super.initView()
+        binding.apply {  }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ActorDetailViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun initViewModel() {
+        super.initViewModel()
     }
 
+    override fun initListener() {
+        super.initListener()
+    }
 }
