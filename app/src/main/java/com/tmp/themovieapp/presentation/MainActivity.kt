@@ -1,17 +1,17 @@
 package com.tmp.themovieapp.presentation
 
-import android.os.Bundle
+import android.util.Log
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseActivity
 import com.tmp.themovieapp.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun initView() {
         super.initView()
+
+        Log.d("TAG", "initView: 이곳은 Main")
+
         binding.apply {  }
     }
 
