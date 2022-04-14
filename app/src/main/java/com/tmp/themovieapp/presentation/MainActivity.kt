@@ -8,15 +8,12 @@ import com.tmp.themovieapp.databinding.ActivityMainBinding
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun initView() {
-        super.initView()
-
         Log.d("TAG", "initView: 이곳은 Main")
 
         binding.apply {  }
     }
 
     override fun initViewModel() {
-        super.initViewModel()
     }
 
     override fun onDestroy() {

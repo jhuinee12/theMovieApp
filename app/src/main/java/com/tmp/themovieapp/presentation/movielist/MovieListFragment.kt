@@ -45,7 +45,11 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
                 listener = object: MovieListAdapter.onClickListener {
                     override fun onItemClick(position: Int) {
                         movieListAdapter.getItem(position).run {
-                            findNavController().navigate(R.id.actionMovieListToMovieDetail)
+                            findNavController().navigate(
+                                MovieListFragmentDirections.actionMovieListToMovieDetail(arrayOf(
+                                    this
+                                ))
+                            )
                         }
                     }
                 }

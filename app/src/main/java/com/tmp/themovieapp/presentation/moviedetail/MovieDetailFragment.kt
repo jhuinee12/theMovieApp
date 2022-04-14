@@ -1,9 +1,14 @@
 package com.tmp.themovieapp.presentation.moviedetail
 
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentMovieDetailBinding
+import com.tmp.themovieapp.entity.MovieInfo
+import com.tmp.themovieapp.viewmodel.MainViewModel
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fragment_movie_detail) {
 
@@ -11,13 +16,20 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
         fun newInstance() = MovieDetailFragment()
     }
 
-    private lateinit var viewModel: MovieDetailViewModel
+    private lateinit var viewModel: MainViewModel
+    private val args by navArgs<MovieDetailFragmentArgs>()
 
     override fun initView() {
         binding.apply {
-            goToActorDetail.setOnClickListener {
-                findNavController().navigate(R.id.actionMovieDetailToActorDetail)
-            }
+            val arg = args.detail.get(0)
+
+            Glide.with(requireActivity())
+                .load("https://image.tmdb.org/t/p/w342${arg.poster_path}")
+                .transform(CenterCrop())
+                .into(this.image)
+
+            this.title.text = arg.title
+            this.overView.text = arg.overview
         }
     }
 
