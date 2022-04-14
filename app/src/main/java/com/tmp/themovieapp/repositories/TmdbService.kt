@@ -1,6 +1,6 @@
 package com.tmp.themovieapp.repositories
 
-import com.tmp.themovieapp.data.api.TmdbApi
+import com.tmp.themovieapp.api.TmdbApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -1,7 +1,5 @@
-package com.tmp.themovieapp.data.api
+package com.tmp.themovieapp.api
 
-import android.content.res.Resources
-import com.tmp.themovieapp.R
 import com.tmp.themovieapp.entity.MovieList
 import retrofit2.Call
 import retrofit2.http.GET

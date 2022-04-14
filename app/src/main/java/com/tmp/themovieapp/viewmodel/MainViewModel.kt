@@ -1,4 +1,4 @@
-package com.tmp.themovieapp.presentation.movielist
+package com.tmp.themovieapp.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MovieListViewModel(private val movieListRepository: MovieListRepository) : BaseViewModel() {
+class MainViewModel(private val movieListRepository: MovieListRepository) : BaseViewModel() {
 
     private val _movieList = MutableLiveData<List<MovieInfo>>()
     val movieList = _movieList
