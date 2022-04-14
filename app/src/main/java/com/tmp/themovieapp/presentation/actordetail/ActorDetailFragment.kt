@@ -2,9 +2,9 @@ package com.tmp.themovieapp.presentation.actordetail
 
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
-import com.tmp.themovieapp.databinding.ActorDetailFragmentBinding
+import com.tmp.themovieapp.databinding.FragmentActorDetailBinding
 
-class ActorDetailFragment : BaseFragment<ActorDetailFragmentBinding>(R.layout.actor_detail_fragment) {
+class ActorDetailFragment : BaseFragment<FragmentActorDetailBinding>(R.layout.fragment_actor_detail) {
 
     companion object {
         fun newInstance() = ActorDetailFragment()

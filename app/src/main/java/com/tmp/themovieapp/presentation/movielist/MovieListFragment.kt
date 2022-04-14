@@ -5,12 +5,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
-import com.tmp.themovieapp.databinding.MovieListFragmentBinding
+import com.tmp.themovieapp.databinding.FragmentMovieListBinding
 import com.tmp.themovieapp.entity.MovieInfo
 import com.tmp.themovieapp.factory.MovieListViewModelFactory
 import com.tmp.themovieapp.repositories.MovieListRepository
 
-class MovieListFragment : BaseFragment<MovieListFragmentBinding>(R.layout.movie_list_fragment) {
+class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragment_movie_list) {
 
     companion object {
         fun newInstance() = MovieListFragment()
