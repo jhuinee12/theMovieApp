@@ -7,9 +7,7 @@ import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentMovieListBinding
 import com.tmp.themovieapp.entity.MovieInfo
-import com.tmp.themovieapp.viewmodel.MainViewModelFactory
 import com.tmp.themovieapp.repositories.MovieListRepository
-import com.tmp.themovieapp.viewmodel.MainViewModel
 
 class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragment_movie_list) {
 
@@ -17,7 +15,7 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
         fun newInstance() = MovieListFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MovieListViewModel
     private lateinit var viewModelFactory: MainViewModelFactory
     private lateinit var movieListAdapter: MovieListAdapter
 
@@ -28,7 +26,7 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
 
     override fun initViewModel() {
         viewModelFactory = MainViewModelFactory(MovieListRepository())
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
 
         viewModel.getPopularMovies()
 
