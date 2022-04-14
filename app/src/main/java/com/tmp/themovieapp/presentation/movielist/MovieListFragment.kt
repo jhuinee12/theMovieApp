@@ -2,6 +2,7 @@ package com.tmp.themovieapp.presentation.movielist
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
@@ -53,7 +54,7 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
 
         binding.recyclerView.run {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = movieListAdapter
         }
     }
