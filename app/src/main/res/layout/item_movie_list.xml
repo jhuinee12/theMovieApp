@@ -16,11 +16,11 @@
 		android:layout_marginEnd="10dp"
 		android:elevation="0dp"
 		app:cardCornerRadius="10dp"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
 		<androidx.constraintlayout.widget.ConstraintLayout
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="15dp"
 			android:background="#ebeff3">
@@ -49,6 +49,10 @@
 					android:textSize="20dp"
 					android:textStyle="bold"
 					android:textColor="@color/black"
+					android:gravity="center"
+					android:maxLines="2"
+					android:minLines="2"
+					android:ellipsize="end"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintTop_toTopOf="parent"
@@ -62,6 +66,7 @@
 					tools:text="overview\noverview\noverview"
 					android:textSize="12dp"
 					android:maxLines="3"
+					android:minLines="3"
 					android:ellipsize="end"
 					app:layout_constraintTop_toBottomOf="@+id/title"
 					app:layout_constraintStart_toStartOf="parent"
