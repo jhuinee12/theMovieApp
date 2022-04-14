@@ -21,7 +21,6 @@ abstract class BaseActivity<T: ViewDataBinding>(@LayoutRes private val layoutId:
 
         initView()
         initViewModel()
-        initListener()
     }
 
     override fun onDestroy() {
@@ -31,7 +30,6 @@ abstract class BaseActivity<T: ViewDataBinding>(@LayoutRes private val layoutId:
 
     protected open fun initView() {}
     protected open fun initViewModel() {}
-    protected open fun initListener() {}
 
     protected fun toast(msg: String) =
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()

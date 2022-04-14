@@ -13,15 +13,10 @@ class ActorDetailFragment : BaseFragment<ActorDetailFragmentBinding>(R.layout.ac
     private lateinit var viewModel: ActorDetailViewModel
 
     override fun initView() {
-        super.initView()
         binding.apply {  }
     }
 
     override fun initViewModel() {
-        super.initViewModel()
     }
 
-    override fun initListener() {
-        super.initListener()
-    }
 }

@@ -26,9 +26,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     override fun initViewModel() {
     }
 
-    override fun initListener() {
-    }
-
     override fun onDestroy() {
         super.onDestroy()
     }

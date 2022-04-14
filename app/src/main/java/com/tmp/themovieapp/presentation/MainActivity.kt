@@ -19,10 +19,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.initViewModel()
     }
 
-    override fun initListener() {
-        super.initListener()
-    }
-
     override fun onDestroy() {
         super.onDestroy()
     }

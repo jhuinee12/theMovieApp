@@ -20,7 +20,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>(R.layout.mo
     private lateinit var viewModel: MovieDetailViewModel
 
     override fun initView() {
-        super.initView()
         binding.apply {
             goToActorDetail.setOnClickListener {
                 findNavController().navigate(R.id.actionMovieDetailToActorDetail)
@@ -29,10 +28,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>(R.layout.mo
     }
 
     override fun initViewModel() {
-        super.initViewModel()
     }
 
-    override fun initListener() {
-        super.initListener()
-    }
 }

@@ -32,7 +32,6 @@ abstract class BaseFragment<T: ViewDataBinding>(@LayoutRes private val layoutId:
 
         initView()
         initViewModel()
-        initListener()
     }
 
     override fun onDestroy() {
@@ -41,7 +40,6 @@ abstract class BaseFragment<T: ViewDataBinding>(@LayoutRes private val layoutId:
     
     protected open fun initView() {}
     protected open fun initViewModel() {}
-    protected open fun initListener() {}
 
     protected fun toast(msg: String) =
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
