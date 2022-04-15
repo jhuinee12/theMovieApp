@@ -5,9 +5,10 @@
 	xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
+		<import type="android.view.View"/>
 		<variable
-			name="movieItem"
-			type="com.tmp.themovieapp.presentation.movielist.MovieListViewModel" />
+			name="movie"
+			type="com.tmp.themovieapp.entity.MovieInfo" />
 	</data>
 
 	<com.google.android.material.card.MaterialCardView
@@ -33,6 +34,18 @@
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"/>
 
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="청소년 관람 불가"
+				android:textSize="10dp"
+				android:textColor="@color/white"
+				android:background="#ff0000"
+				android:textStyle="bold"
+				android:visibility="@{movie.adult ? View.VISIBLE : View.GONE}"
+				app:layout_constraintEnd_toEndOf="@+id/image"
+				app:layout_constraintBottom_toBottomOf="@+id/image"/>
+
 			<androidx.constraintlayout.widget.ConstraintLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -45,7 +58,7 @@
 					android:id="@+id/title"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="영화 제목"
+					android:text="@{movie.title}"
 					android:textSize="20dp"
 					android:textStyle="bold"
 					android:textColor="@color/black"
@@ -63,7 +76,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginTop="10dp"
-					tools:text="overview\noverview\noverview"
+					tools:text="@{movie.overview}"
 					android:textSize="12dp"
 					android:maxLines="3"
 					android:minLines="3"

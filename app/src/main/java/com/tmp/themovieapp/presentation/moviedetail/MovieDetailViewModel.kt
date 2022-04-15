@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class MovieDetailViewModel(private val movieDetailRepository: MovieDetailRepository) : BaseViewModel() {
 
-    private val _actorInfo = MutableLiveData<List<ActorInfo>>()
+    private val _actorInfo = MutableLiveData<MutableList<ActorInfo>>()
     val actorInfo = _actorInfo
 
     fun getMovieDetailInfo(movie_info: Int) {

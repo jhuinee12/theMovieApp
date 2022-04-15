@@ -22,7 +22,7 @@ class MovieListAdapter(private var movies:List<MovieInfo>): RecyclerView.Adapter
     var listener: onClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder =
-        MovieListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_movie_list, parent, false), listener)
+        MovieListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_movie_list, parent, false))
 
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
         Log.d("MovieListAdapter", "onBindViewHolder: called")
@@ -30,13 +30,16 @@ class MovieListAdapter(private var movies:List<MovieInfo>): RecyclerView.Adapter
         val movie = movies[position]
 
         movie.run {
+            holder.binding.movie = movie
+
             Glide.with(holder.itemView.context)
                 .load("https://image.tmdb.org/t/p/w342${movie.poster_path}")
                 .transform(CenterCrop())
                 .into(holder.binding.image)
 
-            holder.binding.title.text = movie.title
-            holder.binding.overView.text = movie.overview
+            holder.itemView.setOnClickListener {
+                listener?.onItemClick(position)
+            }
         }
 
     }
@@ -61,14 +64,8 @@ class MovieListAdapter(private var movies:List<MovieInfo>): RecyclerView.Adapter
     }
 
 
-    inner class MovieListViewHolder(view: View, listener: onClickListener?): RecyclerView.ViewHolder(view) {
+    inner class MovieListViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val binding = ItemMovieListBinding.bind(view)
-
-        init {
-            view.setOnClickListener {
-                listener?.onItemClick(bindingAdapterPosition)
-            }
-        }
     }
 
     interface onClickListener {

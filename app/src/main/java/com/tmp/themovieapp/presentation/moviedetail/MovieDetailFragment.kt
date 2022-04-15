@@ -27,17 +27,38 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
     private val args by navArgs<MovieDetailFragmentArgs>()
     private val movieItem by lazy { args.detail.get(0) }
 
+    private var actors = mutableListOf<ActorInfo>()
+
     private lateinit var actorListAdapter: ActorListAdapter
 
     override fun initView() {
         binding.apply {
+            this.movie = movieItem
+
             Glide.with(requireActivity())
                 .load("https://image.tmdb.org/t/p/w342${movieItem.poster_path}")
                 .transform(CenterCrop())
                 .into(this.image)
 
-            this.title.text = movieItem.title
-            this.overView.text = movieItem.overview
+            this.recyclerView.run {
+                actorListAdapter = ActorListAdapter(actors).apply {
+                    listener = object: ActorListAdapter.onClickListener {
+                        override fun onItemClick(position: Int) {
+                            actorListAdapter.getItem(position).run {
+                                findNavController().navigate(
+                                    MovieDetailFragmentDirections.actionMovieDetailToActorDetail(arrayOf(
+                                        this
+                                    ))
+                                )
+                            }
+                        }
+                    }
+                }
+
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+                adapter = actorListAdapter
+            }
         }
     }
 
@@ -48,33 +69,9 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
         viewModel.getMovieDetailInfo(movieItem.id)
         
         viewModel.actorInfo.observe(this) {
-            updateRepositories(it)
-        }
-    }
-
-    private fun updateRepositories(actors: List<ActorInfo>) {
-        if (::actorListAdapter.isInitialized) {
+            actors = it
             actorListAdapter.update(actors)
-        } else {
-            actorListAdapter = ActorListAdapter(actors).apply {
-                listener = object: ActorListAdapter.onClickListener {
-                    override fun onItemClick(position: Int) {
-                        actorListAdapter.getItem(position).run {
-                            findNavController().navigate(
-                                MovieDetailFragmentDirections.actionMovieDetailToActorDetail(arrayOf(
-                                    this
-                                ))
-                            )
-                        }
-                    }
-                }
-            }
-        }
-
-        binding.recyclerView.run {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-            adapter = actorListAdapter
+            actorListAdapter.notifyDataSetChanged()
         }
     }
 

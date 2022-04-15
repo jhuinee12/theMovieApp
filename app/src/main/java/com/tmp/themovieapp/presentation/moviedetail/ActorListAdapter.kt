@@ -30,13 +30,12 @@ class ActorListAdapter(private var actors:List<ActorInfo>): RecyclerView.Adapter
         val actor = actors[position]
 
         actor.run {
+            holder.binding.actor = actor
+
             Glide.with(holder.itemView.context)
                 .load("https://image.tmdb.org/t/p/w342${actor.profile_path}")
                 .transform(CenterCrop())
                 .into(holder.binding.image)
-
-            holder.binding.name.text = actor.name
-            holder.binding.charactor.text = actor.character
         }
 
     }

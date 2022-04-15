@@ -41,7 +41,19 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
             })
 
             this.recyclerView.run {
-                movieListAdapter = MovieListAdapter(movieData)
+                movieListAdapter = MovieListAdapter(movieData).apply {
+                    listener = object: MovieListAdapter.onClickListener {
+                        override fun onItemClick(position: Int) {
+                            movieListAdapter.getItem(position).run {
+                                findNavController().navigate(
+                                    MovieListFragmentDirections.actionMovieListToMovieDetail(arrayOf(
+                                        this
+                                    ))
+                                )
+                            }
+                        }
+                    }
+                }
                 setHasFixedSize(true)
                 layoutManager = GridLayoutManager(requireContext(), 2)
                 adapter = movieListAdapter
@@ -61,30 +73,8 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
 
         viewModel.movieList.observe(this) {
             movieData = it
-            updateRepositories(it)
+            movieListAdapter.update(movieData)
+            movieListAdapter.notifyDataSetChanged()
         }
     }
-
-    private fun updateRepositories(movies: List<MovieInfo>) {
-        if (::movieListAdapter.isInitialized) {
-            movieListAdapter.update(movies)
-        } else {
-            movieListAdapter = MovieListAdapter(movies).apply {
-                listener = object: MovieListAdapter.onClickListener {
-                    override fun onItemClick(position: Int) {
-                        movieListAdapter.getItem(position).run {
-                            findNavController().navigate(
-                                MovieListFragmentDirections.actionMovieListToMovieDetail(arrayOf(
-                                    this
-                                ))
-                            )
-                        }
-                    }
-                }
-            }
-        }
-
-        movieListAdapter.notifyDataSetChanged()
-    }
-
 }

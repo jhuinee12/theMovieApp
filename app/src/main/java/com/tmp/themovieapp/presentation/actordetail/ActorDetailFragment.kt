@@ -18,17 +18,16 @@ class ActorDetailFragment : BaseFragment<FragmentActorDetailBinding>(R.layout.fr
     private lateinit var viewModel: MovieListViewModel
 
     private val args by navArgs<ActorDetailFragmentArgs>()
-    private val actor by lazy { args.detail.get(0) }
+    private val args_actor by lazy { args.detail.get(0) }
 
     override fun initView() {
         binding.apply {
+            binding.actor = args_actor
+
             Glide.with(requireActivity())
-                .load("https://image.tmdb.org/t/p/w342${actor.profile_path}")
+                .load("https://image.tmdb.org/t/p/w342${args_actor.profile_path}")
                 .transform(CenterCrop())
                 .into(this.image)
-
-            this.name.text = actor.name
-            this.charactor.text = actor.character
         }
     }
 

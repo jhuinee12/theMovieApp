@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class MovieDetail(
     @SerializedName("id") val id: Int,
-    @SerializedName("cast") val cast: List<ActorInfo>,
+    @SerializedName("cast") val cast: MutableList<ActorInfo>,
 ): Parcelable
