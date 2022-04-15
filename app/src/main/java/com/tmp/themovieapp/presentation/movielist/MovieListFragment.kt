@@ -16,16 +16,15 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
     }
 
     private lateinit var viewModel: MovieListViewModel
-    private lateinit var viewModelFactory: MainViewModelFactory
+    private lateinit var viewModelFactory: MovieListViewModelFactory
     private lateinit var movieListAdapter: MovieListAdapter
 
     override fun initView() {
-        binding.apply {
-        }
+        binding.apply { }
     }
 
     override fun initViewModel() {
-        viewModelFactory = MainViewModelFactory(MovieListRepository())
+        viewModelFactory = MovieListViewModelFactory(MovieListRepository())
         viewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
 
         viewModel.getPopularMovies()

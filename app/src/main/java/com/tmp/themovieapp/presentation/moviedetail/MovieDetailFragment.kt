@@ -1,12 +1,14 @@
 package com.tmp.themovieapp.presentation.moviedetail
 
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentMovieDetailBinding
-import com.tmp.themovieapp.presentation.movielist.MovieListViewModel
+import com.tmp.themovieapp.entity.ActorInfo
+import com.tmp.themovieapp.repositories.MovieDetailRepository
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fragment_movie_detail) {
 
@@ -14,24 +16,38 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
         fun newInstance() = MovieDetailFragment()
     }
 
-    private lateinit var viewModel: MovieListViewModel
+    private lateinit var viewModel: MovieDetailViewModel
+    private lateinit var viewModelFactory: MovieDetailViewModelFactory
+
+    // 영화 정보는 movie/popular 를 통해 받아온 정보를 argument로 넘겨줌
+    // Cast 정보는 서버 통신해서 다시 받아옴
     private val args by navArgs<MovieDetailFragmentArgs>()
+    private val movieItem by lazy { args.detail.get(0) }
 
     override fun initView() {
         binding.apply {
-            val arg = args.detail.get(0)
-
             Glide.with(requireActivity())
-                .load("https://image.tmdb.org/t/p/w342${arg.poster_path}")
+                .load("https://image.tmdb.org/t/p/w342${movieItem.poster_path}")
                 .transform(CenterCrop())
                 .into(this.image)
 
-            this.title.text = arg.title
-            this.overView.text = arg.overview
+            this.title.text = movieItem.title
+            this.overView.text = movieItem.overview
         }
     }
 
     override fun initViewModel() {
+        viewModelFactory = MovieDetailViewModelFactory(MovieDetailRepository())
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel::class.java)
+
+        viewModel.getMovieDetailInfo(movieItem.id)
+        
+        viewModel.actorInfo.observe(this) {
+            updateRepositories(it)
+        }
+    }
+
+    private fun updateRepositories(actors: List<ActorInfo>) {
     }
 
 }

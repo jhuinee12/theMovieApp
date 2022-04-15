@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tmp.themovieapp.base.BaseViewModel
-import com.tmp.themovieapp.entity.DetailMovieInfo
 import com.tmp.themovieapp.entity.MovieInfo
 import com.tmp.themovieapp.entity.MovieList
 import com.tmp.themovieapp.repositories.MovieListRepository
