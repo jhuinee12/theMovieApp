@@ -1,6 +1,5 @@
 package com.tmp.themovieapp.presentation.moviedetail
 
-import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -76,13 +75,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
             actors = it
             actorListAdapter.update(actors)
             actorListAdapter.notifyDataSetChanged()
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> findNavController().navigateUp()
-            else -> true
         }
     }
 }

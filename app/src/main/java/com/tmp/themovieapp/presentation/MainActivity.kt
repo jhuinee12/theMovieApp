@@ -1,11 +1,13 @@
 package com.tmp.themovieapp.presentation
 
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseActivity
 import com.tmp.themovieapp.databinding.ActivityMainBinding
@@ -45,5 +47,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> navController.navigateUp()
+            else -> true
+        }
     }
 }
