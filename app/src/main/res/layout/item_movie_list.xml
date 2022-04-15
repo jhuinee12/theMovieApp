@@ -24,7 +24,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="15dp"
-			android:background="#ebeff3">
+			android:background="@color/Item_BackGround">
 
 			<androidx.constraintlayout.widget.ConstraintLayout
 				android:id="@+id/poster"
@@ -84,7 +84,7 @@
 					android:text="@{movie.title}"
 					android:textSize="20dp"
 					android:textStyle="bold"
-					android:textColor="@color/black"
+					android:textColor="@color/white"
 					android:gravity="center"
 					android:maxLines="2"
 					android:minLines="2"
@@ -100,6 +100,7 @@
 					android:layout_height="wrap_content"
 					android:layout_marginTop="10dp"
 					tools:text="@{movie.overview}"
+					android:textColor="@color/white_smallText"
 					android:textSize="12dp"
 					android:maxLines="3"
 					android:minLines="3"

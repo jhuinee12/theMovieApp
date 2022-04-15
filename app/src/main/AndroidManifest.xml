@@ -13,7 +13,8 @@
         android:theme="@style/Theme.TheMovieApp">
         <activity
             android:name=".presentation.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.TheMovieApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +23,8 @@
         </activity>
         <activity
             android:name=".presentation.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TheMovieApp" />
     </application>
 
 </manifest>

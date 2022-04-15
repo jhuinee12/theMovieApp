@@ -25,7 +25,8 @@
             />
         <action
             android:id="@+id/actionMovieDetailToActorDetail"
-            app:destination="@id/actorDetailFragment" />
+            app:destination="@id/actorDetailFragment"
+            app:popUpTo="@id/movieListFragment" />
 
     </fragment>
     <fragment
@@ -38,6 +39,9 @@
             android:name="detail"
             app:argType="com.tmp.themovieapp.entity.ActorInfo[]"
             />
+        <action
+            android:id="@+id/action_actorDetailFragment_to_movieDetailFragment"
+            app:popUpTo="@id/movieDetailFragment" />
 
     </fragment>
 </navigation>

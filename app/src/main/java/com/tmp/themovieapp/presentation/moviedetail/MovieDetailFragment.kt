@@ -1,5 +1,6 @@
 package com.tmp.themovieapp.presentation.moviedetail
 
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -11,6 +12,7 @@ import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentMovieDetailBinding
 import com.tmp.themovieapp.entity.ActorInfo
+import com.tmp.themovieapp.presentation.MainActivity
 import com.tmp.themovieapp.repositories.MovieDetailRepository
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fragment_movie_detail) {
@@ -32,6 +34,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
     private lateinit var actorListAdapter: ActorListAdapter
 
     override fun initView() {
+        (activity as MainActivity).changeToolbar(true)
+
         binding.apply {
             this.movie = movieItem
 
@@ -75,4 +79,10 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> findNavController().navigateUp()
+            else -> true
+        }
+    }
 }
