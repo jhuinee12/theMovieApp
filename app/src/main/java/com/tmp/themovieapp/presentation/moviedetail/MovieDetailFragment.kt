@@ -1,7 +1,10 @@
 package com.tmp.themovieapp.presentation.moviedetail
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.tmp.themovieapp.R
@@ -23,6 +26,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
     // Cast 정보는 서버 통신해서 다시 받아옴
     private val args by navArgs<MovieDetailFragmentArgs>()
     private val movieItem by lazy { args.detail.get(0) }
+
+    private lateinit var actorListAdapter: ActorListAdapter
 
     override fun initView() {
         binding.apply {
@@ -48,6 +53,27 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
     }
 
     private fun updateRepositories(actors: List<ActorInfo>) {
+        if (::actorListAdapter.isInitialized) {
+            actorListAdapter.update(actors)
+        } else {
+            actorListAdapter = ActorListAdapter(actors).apply {
+                listener = object: ActorListAdapter.onClickListener {
+                    override fun onItemClick(position: Int) {
+                        actorListAdapter.getItem(position).run {
+                            findNavController().navigate(
+                                MovieDetailFragmentDirections.actionMovieDetailToActorDetail()
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        binding.recyclerView.run {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            adapter = actorListAdapter
+        }
     }
 
 }
