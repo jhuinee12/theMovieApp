@@ -14,12 +14,15 @@ import retrofit2.Response
 
 class MovieListViewModel(private val movieListRepository: MovieListRepository) : BaseViewModel() {
 
-    private val _movieList = MutableLiveData<List<MovieInfo>>()
+    private val _movieList = MutableLiveData<MutableList<MovieInfo>>()
+    val tempList = mutableListOf<MovieInfo>()
     val movieList = _movieList
 
-    fun getPopularMovies(page: Int = 1) {
+    var page: MutableLiveData<Int> = MutableLiveData<Int>()
+
+    fun getPopularMovies() {
         viewModelScope.launch {
-            movieListRepository.getRepositories(page)
+            movieListRepository.getRepositories(page.value!!)
                 .enqueue(object : Callback<MovieList> {
                     override fun onResponse(
                         call: Call<MovieList>,
@@ -30,7 +33,8 @@ class MovieListViewModel(private val movieListRepository: MovieListRepository) :
 
                             if (responseBody != null) {
                                 Log.d("Repository", "Movies: ${responseBody.movies}")
-                                _movieList.postValue(responseBody.movies)
+                                tempList.addAll(responseBody.movies)
+                                _movieList.postValue(tempList)
                             } else {
                                 Log.d("Repository", "Failed to get response")
                             }
