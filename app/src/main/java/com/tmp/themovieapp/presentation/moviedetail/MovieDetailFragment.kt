@@ -61,7 +61,9 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                     override fun onItemClick(position: Int) {
                         actorListAdapter.getItem(position).run {
                             findNavController().navigate(
-                                MovieDetailFragmentDirections.actionMovieDetailToActorDetail()
+                                MovieDetailFragmentDirections.actionMovieDetailToActorDetail(arrayOf(
+                                    this
+                                ))
                             )
                         }
                     }

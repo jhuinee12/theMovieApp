@@ -32,5 +32,12 @@
         android:id="@+id/actorDetailFragment"
         android:name="com.tmp.themovieapp.presentation.actordetail.ActorDetailFragment"
         android:label="배우 상세 정보"
-        tools:layout="@layout/fragment_actor_detail" />
+        tools:layout="@layout/fragment_actor_detail">
+
+        <argument
+            android:name="detail"
+            app:argType="com.tmp.themovieapp.entity.ActorInfo[]"
+            />
+
+    </fragment>
 </navigation>
