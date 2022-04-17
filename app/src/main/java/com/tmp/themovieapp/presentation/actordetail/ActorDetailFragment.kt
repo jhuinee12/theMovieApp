@@ -15,8 +15,6 @@ class ActorDetailFragment : BaseFragment<FragmentActorDetailBinding>(R.layout.fr
         fun newInstance() = ActorDetailFragment()
     }
 
-    private lateinit var viewModel: MovieListViewModel
-
     private val args by navArgs<ActorDetailFragmentArgs>()
     private val args_actor by lazy { args.detail.get(0) }
 

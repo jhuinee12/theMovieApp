@@ -48,18 +48,18 @@ class MovieListAdapter(private var movies:List<MovieInfo>): RecyclerView.Adapter
 
     fun getItem(position: Int) = movies[position]
 
-    fun update (updated: List<MovieInfo>) {
-        CoroutineScope(Dispatchers.Main).launch {
-            val diffResult = async(Dispatchers.IO) {
+    fun update (updated: List<MovieInfo>) { // updated : 변화된 리스트
+        CoroutineScope(Dispatchers.Main).launch {   // launch : 결과 반환 X && Dispatchers.Main : UI와 상호작용하는 작업 실행
+            val diffResult = async(Dispatchers.IO) {    // async : 결과 반환 && Dispatchers.IO : 네트워크 I/O 작업 실행
                 getDiffResult(updated)
             }
-            movies = updated
-            diffResult.await().dispatchUpdatesTo(this@MovieListAdapter)
+            movies = updated    // movies(updapter와 연결된 리스트)에 변화가 감지된 updated를 넣는다
+            diffResult.await().dispatchUpdatesTo(this@MovieListAdapter) // 리스트 갱신
         }
     }
 
     private fun getDiffResult(updated:List<MovieInfo>): DiffUtil.DiffResult {
-        val diffCallback = MovieListRepositoryCallBack(movies, updated)
+        val diffCallback = MovieListRepositoryCallBack(movies, updated) // movies: oldList , updated: newList
         return DiffUtil.calculateDiff(diffCallback)
     }
 
