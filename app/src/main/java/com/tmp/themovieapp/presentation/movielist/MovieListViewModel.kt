@@ -34,7 +34,7 @@ class MovieListViewModel(private val movieListRepository: MovieListRepository) :
                             if (responseBody != null) {
                                 Log.d("Repository", "Movies: ${responseBody.movies}")
                                 tempList.addAll(responseBody.movies)
-                                _movieList.postValue(tempList)
+                                _movieList.postValue(tempList.toMutableList())
                             } else {
                                 Log.d("Repository", "Failed to get response")
                             }

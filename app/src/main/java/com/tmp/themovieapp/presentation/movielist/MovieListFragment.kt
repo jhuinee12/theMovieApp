@@ -22,8 +22,6 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
     private lateinit var viewModelFactory: MovieListViewModelFactory
     private lateinit var movieListAdapter: MovieListAdapter
 
-    private var movieData = mutableListOf<MovieInfo>()
-
     private var pageCount = 1
 
     override fun initView() {
@@ -37,14 +35,13 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
                     val itemTotalCount = recyclerView.adapter!!.itemCount - 1
 
                     if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == itemTotalCount) {
-                        pageCount++
-                        viewModel.page.value = pageCount + 1
+                        viewModel.page.value = ++pageCount
                     }
                 }
             })
 
             this.recyclerView.run {
-                movieListAdapter = MovieListAdapter(movieData).apply {
+                movieListAdapter = MovieListAdapter(mutableListOf()).apply {
                     listener = object: MovieListAdapter.onClickListener {
                         override fun onItemClick(position: Int) {
                             movieListAdapter.getItem(position).run {
@@ -75,9 +72,8 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
         }
 
         viewModel.movieList.observe(this) {
-            movieData = it
-            movieListAdapter.update(movieData)
-            movieListAdapter.notifyDataSetChanged()
+            movieListAdapter.update(it)
+            //movieListAdapter.notifyDataSetChanged()
         }
     }
 }
