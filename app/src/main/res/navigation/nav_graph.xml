@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_movie_list">
         <action
             android:id="@+id/actionMovieListToMovieDetail"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/movieDetailFragment"
+            app:popUpTo="@id/movieListFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -26,7 +27,7 @@
         <action
             android:id="@+id/actionMovieDetailToActorDetail"
             app:destination="@id/actorDetailFragment"
-            app:popUpTo="@id/movieListFragment" />
+            app:popUpTo="@id/movieDetailFragment"/>
 
     </fragment>
     <fragment
