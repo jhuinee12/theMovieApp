@@ -10,7 +10,8 @@ import com.google.android.material.tabs.TabLayout
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseActivity
 import com.tmp.themovieapp.databinding.ActivityMainBinding
-import com.tmp.themovieapp.presentation.movielist.MovieListFragment
+import com.tmp.themovieapp.presentation.actorlist.ActorListFragmentDirections
+import com.tmp.themovieapp.presentation.movielist.MovieListFragmentDirections
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
@@ -32,8 +33,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             this.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when (tab?.position) {
-                        0 -> MovieListFragment()
-                        1 -> MovieListFragment()
+                        0 -> navController.navigate(ActorListFragmentDirections.actionActorListToMovieList())
+                        1 -> navController.navigate(MovieListFragmentDirections.actionMovieListToActorList())
                     }
                 }
                 override fun onTabUnselected(tab: TabLayout.Tab?) { }

@@ -25,7 +25,7 @@ class MovieListAdapter(private var movies:List<MovieInfo>): RecyclerView.Adapter
         MovieListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_movie_list, parent, false))
 
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
-        Log.d("MovieListAdapter", "onBindViewHolder: called")
+        Log.d("ActorListAdapter", "onBindViewHolder: called")
 
         val movie = movies[position]
 

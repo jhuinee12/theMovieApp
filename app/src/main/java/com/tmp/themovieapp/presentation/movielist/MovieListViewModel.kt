@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tmp.themovieapp.base.BaseViewModel
 import com.tmp.themovieapp.entity.MovieInfo
-import com.tmp.themovieapp.entity.MovieList
+import com.tmp.themovieapp.entity.PopularMovieList
 import com.tmp.themovieapp.repositories.MovieListRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -23,10 +23,10 @@ class MovieListViewModel(private val movieListRepository: MovieListRepository) :
     fun getPopularMovies() {
         viewModelScope.launch {
             movieListRepository.getRepositories(page.value!!)
-                .enqueue(object : Callback<MovieList> {
+                .enqueue(object : Callback<PopularMovieList> {
                     override fun onResponse(
-                        call: Call<MovieList>,
-                        response: Response<MovieList>
+                        call: Call<PopularMovieList>,
+                        response: Response<PopularMovieList>
                     ) {
                         if (response.isSuccessful) {
                             val responseBody = response.body()
@@ -41,7 +41,7 @@ class MovieListViewModel(private val movieListRepository: MovieListRepository) :
                         }
                     }
 
-                    override fun onFailure(call: Call<MovieList>, t: Throwable) {
+                    override fun onFailure(call: Call<PopularMovieList>, t: Throwable) {
                         Log.e("Repository", "onFailure", t)
                     }
                 })
