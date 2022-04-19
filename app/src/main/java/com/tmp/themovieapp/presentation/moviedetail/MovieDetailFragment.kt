@@ -28,8 +28,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
     private val args by navArgs<MovieDetailFragmentArgs>()
     private val movieItem by lazy { args.detail.get(0) }
 
-    private var actors = mutableListOf<ActorInfo>()
-
     private lateinit var actorListAdapter: ActorListAdapter
 
     override fun initView() {
@@ -44,7 +42,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                 .into(this.image)
 
             this.recyclerView.run {
-                actorListAdapter = ActorListAdapter(actors).apply {
+                actorListAdapter = ActorListAdapter(mutableListOf()).apply {
                     listener = object: ActorListAdapter.onClickListener {
                         override fun onItemClick(position: Int) {
                             actorListAdapter.getItem(position).run {
@@ -72,8 +70,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
         viewModel.getMovieDetailInfo(movieItem.id)
         
         viewModel.actorInfo.observe(this) {
-            actors = it
-            actorListAdapter.update(actors)
+            actorListAdapter.update(it)
             actorListAdapter.notifyDataSetChanged()
         }
     }

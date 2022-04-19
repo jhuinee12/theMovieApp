@@ -49,8 +49,10 @@ class ActorListAdapter(private var actors:List<ActorInfo>): RecyclerView.Adapter
             val diffResult = async(Dispatchers.IO) {
                 getDiffResult(updated)
             }
-            actors = updated
-            diffResult.await().dispatchUpdatesTo(this@ActorListAdapter)
+            diffResult.await().run{
+                actors = updated
+                dispatchUpdatesTo(this@ActorListAdapter)
+            }
         }
     }
 

@@ -53,8 +53,10 @@ class MovieListAdapter(private var movies:List<MovieInfo>): RecyclerView.Adapter
             val diffResult = async(Dispatchers.IO) {    // async : 결과 반환 && Dispatchers.IO : 네트워크 I/O 작업 실행
                 getDiffResult(updated)
             }
-            movies = updated    // movies(updapter와 연결된 리스트)에 변화가 감지된 updated를 넣는다
-            diffResult.await().dispatchUpdatesTo(this@MovieListAdapter) // 리스트 갱신
+            diffResult.await().run{ // await() : 값을 반환하기 전에 async 작업이 모두 완료되도록 보장
+                movies = updated    // movies(updapter와 연결된 리스트)에 변화가 감지된 updated를 넣는다
+                dispatchUpdatesTo(this@MovieListAdapter) // 리스트 갱신
+            }
         }
     }
 
