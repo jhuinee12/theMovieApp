@@ -18,7 +18,7 @@ class MovieDetailViewModel(private val movieDetailRepository: MovieDetailReposit
 
     fun getMovieDetailInfo(movie_info: Int) {
         viewModelScope.launch {
-            movieDetailRepository.getRepositories(movie_info)
+            movieDetailRepository.getDetailMovieCredit(movie_info)
                 .enqueue(object : Callback<MovieDetail> {
                     override fun onResponse(
                         call: Call<MovieDetail>,

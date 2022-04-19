@@ -10,22 +10,22 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.callback.ActorListRepositoryCallBack
-import com.tmp.themovieapp.databinding.ItemActorListBinding
+import com.tmp.themovieapp.databinding.ItemMovieCreditBinding
 import com.tmp.themovieapp.entity.ActorInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class ActorListAdapter(private var actors:List<ActorInfo>): RecyclerView.Adapter<ActorListAdapter.ActorListViewHolder>() {
+class MovieCreditAdapter(private var actors:List<ActorInfo>): RecyclerView.Adapter<MovieCreditAdapter.MovieCreditViewHolder>() {
 
     var listener: onClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorListViewHolder =
-        ActorListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_actor_list, parent, false), listener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCreditViewHolder =
+        MovieCreditViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_movie_credit, parent, false), listener)
 
-    override fun onBindViewHolder(holder: ActorListViewHolder, position: Int) {
-        Log.d("ActorListAdapter", "onBindViewHolder: called")
+    override fun onBindViewHolder(holder: MovieCreditViewHolder, position: Int) {
+        Log.d("MovieCreditAdapter", "onBindViewHolder: called")
 
         val actor = actors[position]
 
@@ -52,7 +52,7 @@ class ActorListAdapter(private var actors:List<ActorInfo>): RecyclerView.Adapter
             }
             diffResult.await().run{
                 actors = updated
-                dispatchUpdatesTo(this@ActorListAdapter)
+                dispatchUpdatesTo(this@MovieCreditAdapter)
             }
         }
     }
@@ -63,8 +63,8 @@ class ActorListAdapter(private var actors:List<ActorInfo>): RecyclerView.Adapter
     }
 
 
-    inner class ActorListViewHolder(view: View, listener: onClickListener?): RecyclerView.ViewHolder(view) {
-        val binding = ItemActorListBinding.bind(view)
+    inner class MovieCreditViewHolder(view: View, listener: onClickListener?): RecyclerView.ViewHolder(view) {
+        val binding = ItemMovieCreditBinding.bind(view)
 
         init {
             view.setOnClickListener {

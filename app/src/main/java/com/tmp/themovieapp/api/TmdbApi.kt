@@ -21,7 +21,7 @@ interface TmdbApi {
     ): Call<MovieList>
 
     @GET("movie/{movie_id}/credits")
-    fun getDetailMovieInfo(
+    fun getDetailMovieCredit(
         @Path("movie_id") movie_id: Int,
         @Query("api_key") apiKey: String = APIKEY,
         @Query("language") language: String = LANG

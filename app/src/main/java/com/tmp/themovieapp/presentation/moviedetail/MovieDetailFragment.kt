@@ -27,7 +27,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
     private val args by navArgs<MovieDetailFragmentArgs>()
     private val movieItem by lazy { args.detail.get(0) }
 
-    private lateinit var actorListAdapter: ActorListAdapter
+    private lateinit var movieCreditAdapter: MovieCreditAdapter
 
     override fun initView() {
         (activity as MainActivity).changeToolbar(true)
@@ -41,10 +41,10 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                 .into(this.image)
 
             this.recyclerView.run {
-                actorListAdapter = ActorListAdapter(mutableListOf()).apply {
-                    listener = object: ActorListAdapter.onClickListener {
+                movieCreditAdapter = MovieCreditAdapter(mutableListOf()).apply {
+                    listener = object: MovieCreditAdapter.onClickListener {
                         override fun onItemClick(position: Int) {
-                            actorListAdapter.getItem(position).run {
+                            movieCreditAdapter.getItem(position).run {
                                 findNavController().navigate(
                                     MovieDetailFragmentDirections.actionMovieDetailToActorDetail(arrayOf(
                                         this
@@ -57,7 +57,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
 
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-                adapter = actorListAdapter
+                adapter = movieCreditAdapter
             }
         }
     }
@@ -69,8 +69,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
         viewModel.getMovieDetailInfo(movieItem.id)
         
         viewModel.actorInfo.observe(this) {
-            actorListAdapter.update(it)
-            actorListAdapter.notifyDataSetChanged()
+            movieCreditAdapter.update(it)
+            movieCreditAdapter.notifyDataSetChanged()
         }
     }
 }
