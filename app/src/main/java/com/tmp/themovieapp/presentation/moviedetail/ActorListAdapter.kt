@@ -30,10 +30,11 @@ class ActorListAdapter(private var actors:List<ActorInfo>): RecyclerView.Adapter
         val actor = actors[position]
 
         actor.run {
-            holder.binding.actor = actor
+            holder.binding.actor = this
 
             Glide.with(holder.itemView.context)
-                .load("https://image.tmdb.org/t/p/w342${actor.profile_path}")
+                .load("https://image.tmdb.org/t/p/w342${this.profile_path}")
+                .error(R.drawable.ic_no_image)
                 .transform(CenterCrop())
                 .into(holder.binding.image)
         }

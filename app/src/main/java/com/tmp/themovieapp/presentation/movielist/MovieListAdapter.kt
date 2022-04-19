@@ -30,10 +30,11 @@ class MovieListAdapter(private var movies:List<MovieInfo>): RecyclerView.Adapter
         val movie = movies[position]
 
         movie.run {
-            holder.binding.movie = movie
+            holder.binding.movie = this
 
             Glide.with(holder.itemView.context)
-                .load("https://image.tmdb.org/t/p/w342${movie.poster_path}")
+                .load("https://image.tmdb.org/t/p/w342${this.poster_path}")
+                .error(R.drawable.ic_no_image)
                 .transform(CenterCrop())
                 .into(holder.binding.image)
 

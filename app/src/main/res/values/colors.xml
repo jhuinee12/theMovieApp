@@ -7,8 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="BackGround">#403F3F</color>
-    <color name="white_80">#80FFFFFF</color>
-    <color name="Item_BackGround">#212122</color>
+    <color name="BackGround">#00BCD4</color>
+    <color name="viewColor">#2196F3</color>
+    <color name="Item_BackGround">#3F51B5</color>
     <color name="white_smallText">#ebeff3</color>
 </resources>
