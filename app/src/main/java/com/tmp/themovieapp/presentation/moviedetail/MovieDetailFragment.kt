@@ -10,8 +10,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentMovieDetailBinding
-import com.tmp.themovieapp.entity.ActorInfo
-import com.tmp.themovieapp.presentation.MainActivity
+import com.tmp.themovieapp.presentation.main.MainActivity
 import com.tmp.themovieapp.repositories.MovieDetailRepository
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fragment_movie_detail) {
