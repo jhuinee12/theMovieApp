@@ -27,21 +27,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         Log.d("TAG", "initView: 이곳은 Main")
 
         binding.apply {
-
-            this.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    when (tab?.position) {
-                        0 ->  {
-                            navController.navigate(R.id.movieListFragment)
-                        }
-                        1 -> {
-                            navController.navigate(R.id.actorListFragment)
-                        }
-                    }
-                }
-                override fun onTabUnselected(tab: TabLayout.Tab?) { }
-                override fun onTabReselected(tab: TabLayout.Tab?) { }
-            })
         }
     }
 

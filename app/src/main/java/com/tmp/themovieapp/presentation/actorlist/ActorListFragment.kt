@@ -8,7 +8,7 @@ import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentListBinding
 import com.tmp.themovieapp.presentation.main.MainActivity
-import com.tmp.themovieapp.presentation.moviedetail.MovieDetailFragmentDirections
+import com.tmp.themovieapp.presentation.main.MainFragmentDirections
 import com.tmp.themovieapp.repositories.ActorListRepository
 
 class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
@@ -45,7 +45,7 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
                         override fun onItemClick(position: Int) {
                             actorListAdapter.getItem(position).run {
                                 findNavController().navigate(
-                                    ActorListFragmentDirections.actionActorListToActorDetail(arrayOf(
+                                    MainFragmentDirections.actionActorListToActorDetail(arrayOf(
                                         this
                                     ))
                                 )

@@ -3,20 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/movieListFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/movieListFragment"
-        android:name="com.tmp.themovieapp.presentation.movielist.MovieListFragment"
-        android:label="영화 목록"
-        tools:layout="@layout/fragment_movie_list">
+        android:id="@+id/mainFragment"
+        android:name="com.tmp.themovieapp.presentation.main.MainFragment"
+        android:label="메인"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/actionMovieListToMovieDetail"
             app:destination="@id/movieDetailFragment"
-            app:popUpTo="@id/movieListFragment" />
+            app:popUpTo="@id/mainFragment" />
+
         <action
-            android:id="@+id/actionMovieListToActorList"
-            app:destination="@id/actorListFragment" />
+            android:id="@+id/actionActorListToActorDetail"
+            app:destination="@id/actorDetailFragment"
+            app:popUpTo="@id/mainFragment"/>
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -43,20 +45,5 @@
             android:name="detail"
             app:argType="com.tmp.themovieapp.entity.ActorInfo[]"
             />
-
-    </fragment>
-    <fragment
-        android:id="@+id/actorListFragment"
-        android:name="com.tmp.themovieapp.presentation.actorlist.ActorListFragment"
-        android:label="배우 목록"
-        tools:layout="@layout/fragment_list">
-
-        <action
-            android:id="@+id/actionActorListToMovieList"
-            app:destination="@id/movieListFragment" />
-        <action
-            android:id="@+id/actionActorListToActorDetail"
-            app:destination="@id/actorDetailFragment"
-            app:popUpTo="@id/actorListFragment"/>
     </fragment>
 </navigation>
