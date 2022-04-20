@@ -10,10 +10,6 @@ import com.tmp.themovieapp.presentation.main.MainActivity
 
 class ActorDetailFragment : BaseFragment<FragmentActorDetailBinding>(R.layout.fragment_actor_detail) {
 
-    companion object {
-        fun newInstance() = ActorDetailFragment()
-    }
-
     private val args by navArgs<ActorDetailFragmentArgs>()
     private val args_actor by lazy { args.detail.get(0) }
 
@@ -28,8 +24,5 @@ class ActorDetailFragment : BaseFragment<FragmentActorDetailBinding>(R.layout.fr
                 .transform(CenterCrop())
                 .into(this.image)
         }
-    }
-
-    override fun initViewModel() {
     }
 }

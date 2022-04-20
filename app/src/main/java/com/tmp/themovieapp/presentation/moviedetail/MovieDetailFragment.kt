@@ -15,10 +15,6 @@ import com.tmp.themovieapp.repositories.MovieDetailRepository
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fragment_movie_detail) {
 
-    companion object {
-        fun newInstance() = MovieDetailFragment()
-    }
-
     private lateinit var viewModel: MovieDetailViewModel
     private lateinit var viewModelFactory: MovieDetailViewModelFactory
 

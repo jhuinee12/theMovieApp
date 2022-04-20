@@ -9,6 +9,7 @@ import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentMovieListBinding
 import com.tmp.themovieapp.presentation.main.MainActivity
 import com.tmp.themovieapp.presentation.main.MainFragmentDirections
+import com.tmp.themovieapp.presentation.main.WrapContentGridLayoutMangager
 import com.tmp.themovieapp.repositories.MovieListRepository
 
 class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragment_movie_list) {
@@ -55,7 +56,7 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
                     }
                 }
                 setHasFixedSize(true)
-                layoutManager = GridLayoutManager(requireContext(), 2)
+                layoutManager = WrapContentGridLayoutMangager(requireContext(), 2)
                 adapter = movieListAdapter
             }
         }
@@ -76,4 +77,6 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
             //movieListAdapter.notifyDataSetChanged()
         }
     }
+
+
 }

@@ -9,6 +9,7 @@ import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentListBinding
 import com.tmp.themovieapp.presentation.main.MainActivity
 import com.tmp.themovieapp.presentation.main.MainFragmentDirections
+import com.tmp.themovieapp.presentation.main.WrapContentGridLayoutMangager
 import com.tmp.themovieapp.repositories.ActorListRepository
 
 class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
@@ -54,7 +55,7 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
                     }
                 }
                 setHasFixedSize(true)
-                layoutManager = GridLayoutManager(requireContext(), 2)
+                layoutManager = WrapContentGridLayoutMangager(requireContext(), 2)
                 adapter = actorListAdapter
             }
         }
