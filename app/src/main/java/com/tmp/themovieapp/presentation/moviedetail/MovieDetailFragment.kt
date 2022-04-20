@@ -10,6 +10,9 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentMovieDetailBinding
+import com.tmp.themovieapp.entity.ActorInfo
+import com.tmp.themovieapp.entity.MovieDetail
+import com.tmp.themovieapp.entity.MovieInfo
 import com.tmp.themovieapp.presentation.main.MainActivity
 import com.tmp.themovieapp.repositories.MovieDetailRepository
 
@@ -17,6 +20,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
 
     private lateinit var viewModel: MovieDetailViewModel
     private lateinit var viewModelFactory: MovieDetailViewModelFactory
+
+    private var actorList: MutableList<ActorInfo> = mutableListOf()
 
     // 영화 정보는 movie/popular 를 통해 받아온 정보를 argument로 넘겨줌
     // Cast 정보는 서버 통신해서 다시 받아옴
@@ -37,7 +42,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                 .into(this.image)
 
             this.recyclerView.run {
-                movieCreditAdapter = MovieCreditAdapter(mutableListOf()).apply {
+                movieCreditAdapter = MovieCreditAdapter(actorList).apply {
                     listener = object: MovieCreditAdapter.onClickListener {
                         override fun onItemClick(position: Int) {
                             movieCreditAdapter.getItem(position).run {
@@ -66,7 +71,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
         
         viewModel.actorInfo.observe(this) {
             movieCreditAdapter.update(it)
-            movieCreditAdapter.notifyDataSetChanged()
+            actorList = it
         }
     }
 }

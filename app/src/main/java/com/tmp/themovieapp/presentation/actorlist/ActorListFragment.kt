@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentListBinding
+import com.tmp.themovieapp.entity.ActorInfo
 import com.tmp.themovieapp.presentation.main.MainActivity
 import com.tmp.themovieapp.presentation.main.MainFragmentDirections
 import com.tmp.themovieapp.presentation.main.WrapContentGridLayoutMangager
@@ -21,6 +22,8 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
     private lateinit var viewModel: ActorListViewModel
     private lateinit var viewModelFactory: ActorListViewModelFactory
     private lateinit var actorListAdapter: ActorListAdapter
+
+    private var actorList: MutableList<ActorInfo> = mutableListOf()
 
     private var pageCount = 1
 
@@ -41,7 +44,7 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
             })
 
             this.recyclerView.run {
-                actorListAdapter = ActorListAdapter(mutableListOf()).apply {
+                actorListAdapter = ActorListAdapter(actorList).apply {
                     listener = object: ActorListAdapter.onClickListener {
                         override fun onItemClick(position: Int) {
                             actorListAdapter.getItem(position).run {
@@ -73,7 +76,7 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
 
         viewModel.actorList.observe(this) {
             actorListAdapter.update(it)
-            //actorListAdapter.notifyDataSetChanged()
+            actorList = it
         }
     }
 }
