@@ -1,5 +1,6 @@
 package com.tmp.themovieapp.presentation.movielist
 
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,13 +25,14 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
     private var pageCount = 1
 
     override fun initView() {
+
         (activity as MainActivity).changeToolbar(false)
 
         binding.apply {
             this.recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener(){
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastVisibleItemPosition()
+                    val lastVisibleItemPosition = (recyclerView.layoutManager as GridLayoutManager?)!!.findLastVisibleItemPosition()
                     val itemTotalCount = recyclerView.adapter!!.itemCount - 1
 
                     if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == itemTotalCount) {

@@ -10,8 +10,7 @@ import com.google.android.material.tabs.TabLayout
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseActivity
 import com.tmp.themovieapp.databinding.ActivityMainBinding
-import com.tmp.themovieapp.presentation.actorlist.ActorListFragmentDirections
-import com.tmp.themovieapp.presentation.movielist.MovieListFragmentDirections
+
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
@@ -27,20 +26,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         Log.d("TAG", "initView: 이곳은 Main")
 
         binding.apply {
-            this.tabLayout.addTab(tabLayout.newTab().setText("영화"))
-            this.tabLayout.addTab(tabLayout.newTab().setText("배우"))
-            
+
             this.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when (tab?.position) {
-                        0 -> navController.navigate(ActorListFragmentDirections.actionActorListToMovieList())
-                        1 -> navController.navigate(MovieListFragmentDirections.actionMovieListToActorList())
+                        0 ->  {
+                            navController.navigate(R.id.movieListFragment)
+                        }
+                        1 -> {
+                            navController.navigate(R.id.actorListFragment)
+                        }
                     }
                 }
                 override fun onTabUnselected(tab: TabLayout.Tab?) { }
                 override fun onTabReselected(tab: TabLayout.Tab?) { }
             })
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        navController.navigateUp()
     }
 
     override fun initViewModel() {
