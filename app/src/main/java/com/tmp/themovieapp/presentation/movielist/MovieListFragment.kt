@@ -1,10 +1,8 @@
 package com.tmp.themovieapp.presentation.movielist
 
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment

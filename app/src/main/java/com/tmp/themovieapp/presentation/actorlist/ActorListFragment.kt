@@ -3,7 +3,6 @@ package com.tmp.themovieapp.presentation.actorlist
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
@@ -31,7 +30,7 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
             this.recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener(){
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastVisibleItemPosition()
+                    val lastVisibleItemPosition = (recyclerView.layoutManager as GridLayoutManager?)!!.findLastVisibleItemPosition()
                     val itemTotalCount = recyclerView.adapter!!.itemCount - 1
 
                     if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == itemTotalCount) {

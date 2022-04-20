@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayout
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseActivity
 import com.tmp.themovieapp.databinding.ActivityMainBinding
+import com.tmp.themovieapp.presentation.movielist.MovieListFragment
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
