@@ -1,9 +1,6 @@
 package com.tmp.themovieapp.presentation.main
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.tmp.themovieapp.presentation.actorlist.ActorListFragment
 import com.tmp.themovieapp.presentation.movielist.MovieListFragment

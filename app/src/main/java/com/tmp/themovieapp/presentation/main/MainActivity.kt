@@ -2,8 +2,10 @@ package com.tmp.themovieapp.presentation.main
 
 import android.content.Context
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
@@ -13,11 +15,17 @@ import com.google.android.material.tabs.TabLayout
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseActivity
 import com.tmp.themovieapp.databinding.ActivityMainBinding
+import com.tmp.themovieapp.presentation.actorlist.ActorListViewModel
+import com.tmp.themovieapp.presentation.actorlist.ActorListViewModelFactory
 import com.tmp.themovieapp.presentation.movielist.MovieListFragment
+import com.tmp.themovieapp.repositories.ActorListRepository
 import java.lang.IndexOutOfBoundsException
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+
+    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModelFactory: MainViewModelFactory
 
     private val navHostFragment: NavHostFragment by lazy {
         (supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment)
@@ -25,19 +33,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val graph: NavGraph by lazy { navHostFragment.navController.navInflater.inflate(R.navigation.nav_graph) }
     private val navController: NavController by lazy { navHostFragment.navController }
 
+//    val iconSelectedInBottomNav by lazy { viewModel.bottomNavItem }
+    var iconSelectedInBottomNav = R.id.action_home
+
     override fun initView() {
         Log.d("TAG", "initView: 이곳은 Main")
 
         binding.apply {
+            this.bottomNav.setOnItemSelectedListener {
+                refreshCurrentFragment()
+                iconSelectedInBottomNav = it.itemId
+                //viewModel.bottomNavItem.postValue(it.itemId)
+                return@setOnItemSelectedListener true
+            }
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        //navController.navigateUp()
-    }
-
     override fun initViewModel() {
+        viewModelFactory = MainViewModelFactory()
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+
+        /*viewModel.bottomNavItem.observe(this) {
+            refreshCurrentFragment()
+        }*/
     }
 
     fun changeToolbar(
@@ -54,6 +72,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+    }
+
+    private fun refreshCurrentFragment(){
+        val id = navController.currentDestination?.id
+        navController.popBackStack(id!!,true)
+        navController.navigate(id)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

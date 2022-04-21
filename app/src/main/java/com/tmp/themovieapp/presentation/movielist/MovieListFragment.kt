@@ -72,12 +72,18 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
         viewModel.page.value = pageCount
 
         viewModel.page.observe(this) {
-            viewModel.getPopularMovies()
+            when ((activity as MainActivity).iconSelectedInBottomNav) {
+                R.id.action_home -> viewModel.getPopularMovies()
+            }
         }
 
         viewModel.movieList.observe(this) {
-            movieListAdapter.update(it)
-            movieList = it
+            when ((activity as MainActivity).iconSelectedInBottomNav) {
+                R.id.action_home -> {
+                    movieListAdapter.update(it)
+                    movieList = it
+                }
+            }
         }
     }
 

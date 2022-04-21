@@ -71,12 +71,18 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
         viewModel.page.value = pageCount
 
         viewModel.page.observe(this) {
-            viewModel.getPopularActors()
+            when ((activity as MainActivity).iconSelectedInBottomNav) {
+                R.id.action_home -> viewModel.getPopularActors()
+            }
         }
 
         viewModel.actorList.observe(this) {
-            actorListAdapter.update(it)
-            actorList = it
+            when ((activity as MainActivity).iconSelectedInBottomNav) {
+                R.id.action_home -> {
+                    actorListAdapter.update(it)
+                    actorList = it
+                }
+            }
         }
     }
 }
