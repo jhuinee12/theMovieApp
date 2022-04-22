@@ -7,6 +7,7 @@ import com.tmp.themovieapp.base.BaseViewModel
 import com.tmp.themovieapp.entity.MovieInfo
 import com.tmp.themovieapp.entity.PopularMovieList
 import com.tmp.themovieapp.repositories.MovieListRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,6 +46,12 @@ class MovieListViewModel(private val movieListRepository: MovieListRepository) :
                         Log.e("Repository", "onFailure", t)
                     }
                 })
+        }
+    }
+
+    fun getMyFavoriteMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _movieList.postValue(movieListRepository.getAll())
         }
     }
 }

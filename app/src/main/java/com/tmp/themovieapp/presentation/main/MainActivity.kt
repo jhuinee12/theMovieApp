@@ -74,6 +74,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         supportActionBar?.setHomeButtonEnabled(true)
     }
 
+    fun changeBottomNav(isVisible: Boolean = false) {
+        binding.bottomNav.visibility =
+            if (isVisible) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+    }
+
     private fun refreshCurrentFragment(){
         val id = navController.currentDestination?.id
         navController.popBackStack(id!!,true)

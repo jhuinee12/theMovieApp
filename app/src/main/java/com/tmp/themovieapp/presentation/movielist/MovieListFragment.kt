@@ -68,7 +68,7 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
     }
 
     override fun initViewModel() {
-        viewModelFactory = MovieListViewModelFactory(MovieListRepository())
+        viewModelFactory = MovieListViewModelFactory(MovieListRepository(requireContext()))
         viewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
 
         viewModel.page.value = pageCount
@@ -76,19 +76,13 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
         viewModel.page.observe(this) {
             when ((activity as MainActivity).iconSelectedInBottomNav) {
                 R.id.action_home -> viewModel.getPopularMovies()
+                R.id.action_favorite -> viewModel.getMyFavoriteMovies()
             }
         }
 
         viewModel.movieList.observe(this) {
-            when ((activity as MainActivity).iconSelectedInBottomNav) {
-                R.id.action_home -> {
-                    movieListAdapter.update(it)
-                    movieList = it
-                }
-                R.id.action_favorite -> {
-
-                }
-            }
+            movieListAdapter.update(it)
+            movieList = it
         }
     }
 

@@ -18,19 +18,6 @@ class MovieDetailRepository(context: Context) {
 
     fun getDetailMovieCredit(movie_id: Int) = tmdbApi.getDetailMovieCredit(movie_id = movie_id)
 
-
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun getAll() {
-        CoroutineScope(Dispatchers.Main).launch {   // Main이 아닌 다른 스레드에서 비동기 처리
-            Thread {
-                app.database.movieDao().getAll()
-                var movies = app.database.movieDao().getAll()
-                Log.e("TAG", "getAll: $movies")
-            }.start()
-        }
-    }
-
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun getCountId(id: Int): Int {

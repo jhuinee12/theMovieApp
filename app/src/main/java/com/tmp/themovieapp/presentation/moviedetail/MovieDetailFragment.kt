@@ -33,9 +33,12 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
 
     override fun initView() {
         (activity as MainActivity).changeToolbar(true)
+        (activity as MainActivity).changeBottomNav(false)
 
         binding.apply {
             this.movie = movieItem
+
+            looksFavoriteButton()
 
             Glide.with(requireActivity())
                 .load("https://image.tmdb.org/t/p/w342${movieItem.poster_path}")
@@ -61,8 +64,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                 layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
                 adapter = movieCreditAdapter
             }
-
-            looksFavoriteButton()
 
             binding.favoriteOff.setOnClickListener {
                 viewModel.addFavoriteMovie(movieItem)

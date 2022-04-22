@@ -15,6 +15,7 @@ class ActorDetailFragment : BaseFragment<FragmentActorDetailBinding>(R.layout.fr
 
     override fun initView() {
         (activity as MainActivity).changeToolbar(true)
+        (activity as MainActivity).changeBottomNav(false)
 
         binding.apply {
             binding.actor = args_actor

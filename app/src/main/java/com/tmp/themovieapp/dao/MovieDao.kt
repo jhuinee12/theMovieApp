@@ -6,7 +6,7 @@ import com.tmp.themovieapp.entity.MovieInfo
 @Dao
 interface MovieDao {
     @Query("SELECT * FROM MovieInfo")
-    fun getAll(): List<MovieInfo>
+    fun getAll(): MutableList<MovieInfo>
 
     @Query("SELECT * FROM MovieInfo WHERE id IN (:id)")
     fun loadAllById(id: Int): List<MovieInfo>
