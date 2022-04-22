@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.tmp.themovieapp.base.BaseViewModel
 import com.tmp.themovieapp.entity.*
 import com.tmp.themovieapp.repositories.MovieDetailRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,6 +41,26 @@ class MovieDetailViewModel(private val movieDetailRepository: MovieDetailReposit
                         Log.e("Repository", "onFailure", t)
                     }
                 })
+        }
+    }
+
+    fun addFavoriteMovie(movie: MovieInfo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            movieDetailRepository.insert(movie)
+        }
+    }
+
+    fun countMovieWhereId(id: Int): Int {
+        var count = 0
+        viewModelScope.launch(Dispatchers.IO) {
+            count = movieDetailRepository.getCountId(id)
+        }
+        return count
+    }
+
+    fun deleteFavoriteMovie(movie: MovieInfo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            movieDetailRepository.delete(movie)
         }
     }
 }

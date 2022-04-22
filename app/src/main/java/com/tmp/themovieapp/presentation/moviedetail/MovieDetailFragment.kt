@@ -1,5 +1,6 @@
 package com.tmp.themovieapp.presentation.moviedetail
 
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -41,6 +42,12 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                 .transform(CenterCrop())
                 .into(this.image)
 
+            if (viewModel.countMovieWhereId(movieItem.id) != 0) {
+                this.favoriteOn.visibility = View.VISIBLE
+            } else {
+                this.favoriteOff.visibility = View.VISIBLE
+            }
+
             this.recyclerView.run {
                 movieCreditAdapter = MovieCreditAdapter(actorList).apply {
                     listener = object: MovieCreditAdapter.onClickListener {
@@ -60,11 +67,18 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                 layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
                 adapter = movieCreditAdapter
             }
+
+            binding.favoriteOff.setOnClickListener {
+                viewModel.addFavoriteMovie(movieItem)
+            }
+            binding.favoriteOn.setOnClickListener {
+                viewModel.deleteFavoriteMovie(movieItem)
+            }
         }
     }
 
     override fun initViewModel() {
-        viewModelFactory = MovieDetailViewModelFactory(MovieDetailRepository())
+        viewModelFactory = MovieDetailViewModelFactory(MovieDetailRepository(requireContext()))
         viewModel = ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel::class.java)
 
         viewModel.getMovieDetailInfo(movieItem.id)

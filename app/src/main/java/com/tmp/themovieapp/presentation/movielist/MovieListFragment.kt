@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.tmp.themovieapp.App
 import com.tmp.themovieapp.R
 import com.tmp.themovieapp.base.BaseFragment
 import com.tmp.themovieapp.databinding.FragmentMovieListBinding
@@ -12,6 +13,7 @@ import com.tmp.themovieapp.presentation.main.MainActivity
 import com.tmp.themovieapp.presentation.main.MainFragmentDirections
 import com.tmp.themovieapp.presentation.main.WrapContentGridLayoutMangager
 import com.tmp.themovieapp.repositories.MovieListRepository
+import com.tmp.themovieapp.room.FavoriteRoomDatabase
 
 class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragment_movie_list) {
 

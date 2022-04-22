@@ -1,22 +1,22 @@
 package com.tmp.themovieapp.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import com.tmp.themovieapp.entity.MovieInfoRoom
+import androidx.room.*
+import com.tmp.themovieapp.entity.MovieInfo
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM MovieInfoRoom")
-    fun getAll(): List<MovieInfoRoom>
+    @Query("SELECT * FROM MovieInfo")
+    fun getAll(): List<MovieInfo>
 
-    @Query("SELECT * FROM MovieInfoRoom WHERE id IN (:id)")
-    fun loadAllById(id: Int): List<MovieInfoRoom>
+    @Query("SELECT * FROM MovieInfo WHERE id IN (:id)")
+    fun loadAllById(id: Int): List<MovieInfo>
 
-    @Insert
-    fun insert(movie: MovieInfoRoom)
+    @Query("SELECT count(*) FROM MovieInfo WHERE id IN (:id)")
+    fun countId(id: Int): Int
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE) // 중복값 입력 시, 무시! (insert 수행 안함)
+    fun insert(movie: MovieInfo)
 
     @Delete
-    fun delete(movie: MovieInfoRoom)
+    fun delete(movie: MovieInfo)
 }

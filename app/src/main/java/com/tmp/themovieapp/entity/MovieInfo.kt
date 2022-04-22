@@ -7,8 +7,9 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
+@Entity(tableName = "MovieInfo")
 data class MovieInfo(
-    @SerializedName("id") val id: Int,
+    @SerializedName("id") @PrimaryKey val id: Int,
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("title") val title: String,
     @SerializedName("overview") val overview: String,
@@ -21,7 +22,7 @@ data class MovieInfo(
     @SerializedName("poster_path") val poster_path: String
 ): Parcelable
 
-@Entity
+/*@Entity
 data class MovieInfoRoom(
     @PrimaryKey val id: Int,
     val adult: Boolean,
@@ -34,5 +35,5 @@ data class MovieInfoRoom(
     val vote_average: Float,
     val vote_count: Int,
     val poster_path: String
-)
+)*/
 
