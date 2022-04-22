@@ -17,6 +17,8 @@ class MovieDetailViewModel(private val movieDetailRepository: MovieDetailReposit
     private val _actorInfo = MutableLiveData<MutableList<ActorInfo>>()
     val actorInfo = _actorInfo
 
+    val isFavorite = MutableLiveData<Int>()
+
     fun getMovieDetailInfo(movie_info: Int) {
         viewModelScope.launch {
             movieDetailRepository.getDetailMovieCredit(movie_info)
@@ -47,20 +49,20 @@ class MovieDetailViewModel(private val movieDetailRepository: MovieDetailReposit
     fun addFavoriteMovie(movie: MovieInfo) {
         viewModelScope.launch(Dispatchers.IO) {
             movieDetailRepository.insert(movie)
+            countMovieWhereId(movie.id)
         }
     }
 
-    fun countMovieWhereId(id: Int): Int {
-        var count = 0
+    fun countMovieWhereId(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            count = movieDetailRepository.getCountId(id)
+            isFavorite.postValue(movieDetailRepository.getCountId(id))
         }
-        return count
     }
 
     fun deleteFavoriteMovie(movie: MovieInfo) {
         viewModelScope.launch(Dispatchers.IO) {
             movieDetailRepository.delete(movie)
+            countMovieWhereId(movie.id)
         }
     }
 }

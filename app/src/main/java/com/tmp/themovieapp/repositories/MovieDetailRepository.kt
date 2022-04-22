@@ -34,24 +34,19 @@ class MovieDetailRepository(context: Context) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun getCountId(id: Int): Int {
-                return app.database.movieDao().countId(id)
+        return app.database.movieDao().countId(id)
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(movie: MovieInfo) {
-        CoroutineScope(Dispatchers.Main).launch {
-                app.database.movieDao().insert(movie)
-            Toast.makeText(app.applicationContext, "insert 완료", Toast.LENGTH_SHORT).show()
-        }
+            val sMovie = movie
+            app.database.movieDao().insert(movie)
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun delete(movie: MovieInfo) {
-        CoroutineScope(Dispatchers.Main).launch {
-                app.database.movieDao().delete(movie)
-            Toast.makeText(app.applicationContext, "delete 완료", Toast.LENGTH_SHORT).show()
-        }
+        app.database.movieDao().delete(movie)
     }
 }

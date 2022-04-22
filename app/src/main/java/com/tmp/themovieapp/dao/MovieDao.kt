@@ -11,10 +11,10 @@ interface MovieDao {
     @Query("SELECT * FROM MovieInfo WHERE id IN (:id)")
     fun loadAllById(id: Int): List<MovieInfo>
 
-    @Query("SELECT count(*) FROM MovieInfo WHERE id IN (:id)")
-    fun countId(id: Int): Int
+    @Query("SELECT count(*) FROM MovieInfo WHERE id = :sId")
+    fun countId(sId: Int): Int
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE) // 중복값 입력 시, 무시! (insert 수행 안함)
+    @Insert(onConflict = OnConflictStrategy.REPLACE) // 중복값 입력 시, 덮어쓰기
     fun insert(movie: MovieInfo)
 
     @Delete

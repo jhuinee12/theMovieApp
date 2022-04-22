@@ -42,12 +42,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                 .transform(CenterCrop())
                 .into(this.image)
 
-            if (viewModel.countMovieWhereId(movieItem.id) != 0) {
-                this.favoriteOn.visibility = View.VISIBLE
-            } else {
-                this.favoriteOff.visibility = View.VISIBLE
-            }
-
             this.recyclerView.run {
                 movieCreditAdapter = MovieCreditAdapter(actorList).apply {
                     listener = object: MovieCreditAdapter.onClickListener {
@@ -68,6 +62,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
                 adapter = movieCreditAdapter
             }
 
+            looksFavoriteButton()
+
             binding.favoriteOff.setOnClickListener {
                 viewModel.addFavoriteMovie(movieItem)
             }
@@ -82,10 +78,26 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
         viewModel = ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel::class.java)
 
         viewModel.getMovieDetailInfo(movieItem.id)
+
+        viewModel.countMovieWhereId(movieItem.id)
+
+        viewModel.isFavorite.observe(this) {
+            looksFavoriteButton()
+        }
         
         viewModel.actorInfo.observe(this) {
             movieCreditAdapter.update(it)
             actorList = it
+        }
+    }
+
+    fun looksFavoriteButton() {
+        if (viewModel.isFavorite.value != 0) {
+            binding.favoriteOn.visibility = View.VISIBLE
+            binding.favoriteOff.visibility = View.GONE
+        } else {
+            binding.favoriteOn.visibility = View.GONE
+            binding.favoriteOff.visibility = View.VISIBLE
         }
     }
 }

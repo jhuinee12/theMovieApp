@@ -85,6 +85,9 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragme
                     movieListAdapter.update(it)
                     movieList = it
                 }
+                R.id.action_favorite -> {
+
+                }
             }
         }
     }
