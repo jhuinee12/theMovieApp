@@ -13,10 +13,10 @@ import kotlinx.android.parcel.Parcelize
 data class ActorInfo(
     @SerializedName("id") @PrimaryKey val id: Int,
     @SerializedName("gender") val gender: Int?,
-    @SerializedName("known_for_department") val known_for_department: String,
+    @SerializedName("known_for_department") val known_for_department: String?,
     @SerializedName("name") val name: String,
-    @SerializedName("character") val character: String,
+    @SerializedName("character") val character: String?,
     @SerializedName("profile_path") val profile_path: String?,
-    @SerializedName("cast_id") val cast_id: Int,
-    @SerializedName("credit_id") val credit_id: String
+    @SerializedName("cast_id") val cast_id: Int?,
+    @SerializedName("credit_id") val credit_id: String?
 ): Parcelable
