@@ -22,18 +22,3 @@ data class MovieInfo(
     @SerializedName("poster_path") val poster_path: String
 ): Parcelable
 
-/*@Entity
-data class MovieInfoRoom(
-    @PrimaryKey val id: Int,
-    val adult: Boolean,
-    val title: String,
-    val overview: String,
-    val popularity: Float,
-    val release_date: String,
-    val runtime: Int,
-    val status: String,
-    val vote_average: Float,
-    val vote_count: Int,
-    val poster_path: String
-)*/
-
