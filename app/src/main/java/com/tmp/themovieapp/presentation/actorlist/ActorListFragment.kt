@@ -65,7 +65,7 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
     }
 
     override fun initViewModel() {
-        viewModelFactory = ActorListViewModelFactory(ActorListRepository())
+        viewModelFactory = ActorListViewModelFactory(ActorListRepository(requireContext()))
         viewModel = ViewModelProvider(this, viewModelFactory).get(ActorListViewModel::class.java)
 
         viewModel.page.value = pageCount
@@ -73,16 +73,13 @@ class ActorListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_li
         viewModel.page.observe(this) {
             when ((activity as MainActivity).iconSelectedInBottomNav) {
                 R.id.action_home -> viewModel.getPopularActors()
+                R.id.action_favorite -> viewModel.getMyFavoriteActors()
             }
         }
 
         viewModel.actorList.observe(this) {
-            when ((activity as MainActivity).iconSelectedInBottomNav) {
-                R.id.action_home -> {
-                    actorListAdapter.update(it)
-                    actorList = it
-                }
-            }
+            actorListAdapter.update(it)
+            actorList = it
         }
     }
 }

@@ -27,8 +27,7 @@ class MovieDetailRepository(context: Context) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(movie: MovieInfo) {
-            val sMovie = movie
-            app.database.movieDao().insert(movie)
+        app.database.movieDao().insert(movie)
     }
 
     @Suppress("RedundantSuspendModifier")

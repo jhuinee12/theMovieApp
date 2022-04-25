@@ -7,6 +7,7 @@ import com.tmp.themovieapp.base.BaseViewModel
 import com.tmp.themovieapp.entity.ActorInfo
 import com.tmp.themovieapp.entity.PopularActorList
 import com.tmp.themovieapp.repositories.ActorListRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,6 +46,12 @@ class ActorListViewModel(private val actorListRepository: ActorListRepository) :
                         Log.e("Repository", "onFailure", t)
                     }
                 })
+        }
+    }
+
+    fun getMyFavoriteActors() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _actorList.postValue(actorListRepository.getAll())
         }
     }
 }
