@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.tmp.themovieapp.presentation.main.MainFragment"
+        android:name="com.zahi.themovieapp.presentation.main.MainFragment"
         android:label="메인"
         tools:layout="@layout/fragment_main">
         <action
@@ -22,12 +22,12 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.tmp.themovieapp.presentation.moviedetail.MovieDetailFragment"
+        android:name="com.zahi.themovieapp.presentation.moviedetail.MovieDetailFragment"
         android:label="영화 상세 정보"
         tools:layout="@layout/fragment_movie_detail">
         <argument
             android:name="detail"
-            app:argType="com.tmp.themovieapp.entity.MovieInfo[]"
+            app:argType="com.zahi.themovieapp.entity.MovieInfo[]"
             />
         <action
             android:id="@+id/actionMovieDetailToActorDetail"
@@ -37,13 +37,13 @@
     </fragment>
     <fragment
         android:id="@+id/actorDetailFragment"
-        android:name="com.tmp.themovieapp.presentation.actordetail.ActorDetailFragment"
+        android:name="com.zahi.themovieapp.presentation.actordetail.ActorDetailFragment"
         android:label="배우 상세 정보"
         tools:layout="@layout/fragment_actor_detail">
 
         <argument
             android:name="detail"
-            app:argType="com.tmp.themovieapp.entity.ActorInfo[]"
+            app:argType="com.zahi.themovieapp.entity.ActorInfo[]"
             />
     </fragment>
 </navigation>

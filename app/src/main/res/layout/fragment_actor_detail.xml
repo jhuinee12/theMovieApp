@@ -6,7 +6,7 @@
     <data>
         <variable
             name="actor"
-            type="com.tmp.themovieapp.entity.ActorInfo" />
+            type="com.zahi.themovieapp.entity.ActorInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

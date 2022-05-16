@@ -8,7 +8,7 @@
 		<import type="android.view.View"/>
 		<variable
 			name="actor"
-			type="com.tmp.themovieapp.entity.ActorInfo" />
+			type="com.zahi.themovieapp.entity.ActorInfo" />
 	</data>
 
 	<com.google.android.material.card.MaterialCardView

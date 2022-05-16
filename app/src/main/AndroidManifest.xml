@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tmp.themovieapp">
+    package="com.zahi.themovieapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".App"
+        android:name="com.zahi.themovieapp.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,7 +14,7 @@
         android:theme="@style/Theme.TheMovieApp"
         android:dataExtractionRules="@xml/data_extraction_rules">
         <activity
-            android:name=".presentation.SplashActivity"
+            android:name="com.zahi.themovieapp.presentation.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.TheMovieApp">
             <intent-filter>
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.main.MainActivity"
+            android:name="com.zahi.themovieapp.presentation.main.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.TheMovieApp" />
     </application>
