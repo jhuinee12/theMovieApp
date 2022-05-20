@@ -1,6 +1,7 @@
 package com.zahi.themovieapp.presentation
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.util.Log

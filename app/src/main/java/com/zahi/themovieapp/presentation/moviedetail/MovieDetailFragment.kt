@@ -1,5 +1,6 @@
 package com.zahi.themovieapp.presentation.moviedetail
 
+import android.net.Uri
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -8,6 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.google.firebase.dynamiclinks.ktx.androidParameters
+import com.google.firebase.dynamiclinks.ktx.dynamicLink
+import com.google.firebase.dynamiclinks.ktx.dynamicLinks
+import com.google.firebase.dynamiclinks.ktx.iosParameters
+import com.google.firebase.ktx.Firebase
 import com.zahi.themovieapp.R
 import com.zahi.themovieapp.base.BaseFragment
 import com.zahi.themovieapp.databinding.FragmentMovieDetailBinding
@@ -98,5 +104,16 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(R.layout.fr
             binding.favoriteOn.visibility = View.GONE
             binding.favoriteOff.visibility = View.VISIBLE
         }
+    }
+
+    fun createDynamicLink() {
+        val dynamicLink = Firebase.dynamicLinks.dynamicLink {
+            link = Uri.parse("https://www.naver.com/")
+            domainUriPrefix = "https://themovieapp.page.link"
+            // Open links with this app on Android
+            androidParameters { }
+        }
+
+        val dynamicLinkUri = dynamicLink.uri
     }
 }
